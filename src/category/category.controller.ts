@@ -11,6 +11,7 @@ import {
 import { Auth } from '../auth/decorators/auth.decorator';
 import { CreateCategoryDto, UpdateCategoryDto } from './dto/category.dto';
 import { Category } from '@/prisma/generated';
+
 @Controller('categories')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
