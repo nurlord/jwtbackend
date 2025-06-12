@@ -3,7 +3,6 @@ import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
-import { ColorModule } from './color/color.module';
 import { CategoryModule } from './category/category.module';
 import { FileModule } from './file/file.module';
 import { StoreModule } from './store/store.module';
@@ -18,7 +17,6 @@ import { ReviewModule } from './review/review.module';
     PrismaModule,
     AuthModule,
     UserModule,
-    ColorModule,
     CategoryModule,
     FileModule,
     StoreModule,
