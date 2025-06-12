@@ -1,7 +1,8 @@
-import { Controller, Get, Param, Patch } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CurrentUser } from './decorators/user.decorator';
 import { Auth } from '../auth/decorators/auth.decorator';
+import { RegisterDto } from '../auth/dto/auth.dto';
 
 @Controller('users')
 export class UserController {
@@ -11,6 +12,12 @@ export class UserController {
   @Get('profile')
   async getProfile(@CurrentUser('id') id: string) {
     return this.userService.getById(id);
+  }
+
+  @Auth()
+  @Patch('profile')
+  async updateProfile(@CurrentUser('id') id: string, @Body() dto: RegisterDto) {
+    return this.userService.updateProfile(id, dto);
   }
 
   @Auth()
