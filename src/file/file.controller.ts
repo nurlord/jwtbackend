@@ -9,7 +9,7 @@ import {
 import { FileService } from './file.service';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { Auth } from '../auth/decorators/auth.decorator';
-import { ApiConsumes, ApiQuery } from '@nestjs/swagger';
+import { ApiBody, ApiConsumes, ApiQuery } from '@nestjs/swagger';
 
 @Controller('files')
 export class FileController {
@@ -18,6 +18,22 @@ export class FileController {
   @HttpCode(200)
   @ApiConsumes('multipart/form-data')
   @ApiQuery({ name: 'folder', required: false, type: String })
+  @ApiBody({
+    description: 'Upload multiple files',
+    required: true,
+    schema: {
+      type: 'object',
+      properties: {
+        files: {
+          type: 'array',
+          items: {
+            type: 'string',
+            format: 'binary',
+          },
+        },
+      },
+    },
+  })
   @UseInterceptors(FilesInterceptor('files'))
   @Auth()
   @Post()
