@@ -11,11 +11,13 @@ import {
 import { ProductService } from './product.service';
 import { Auth } from '../auth/decorators/auth.decorator';
 import { CreateProductDto, UpdateProductDto } from './dto/product.dto';
+import { ApiQuery } from '@nestjs/swagger';
 
 @Controller('products')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
+  @ApiQuery({ name: 'searchTerm', required: false, type: String })
   @Get()
   async getAll(@Query('searchTerm') searchTerm?: string) {
     return this.productService.getAll(searchTerm);

@@ -16,6 +16,11 @@ import { Category } from '@/prisma/generated';
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
+  @Get()
+  async getAll(): Promise<Category[]> {
+    return this.categoryService.getAll();
+  }
+
   @Get(':id')
   async getById(@Param('id') id: string): Promise<Category> {
     return this.categoryService.getById(id);

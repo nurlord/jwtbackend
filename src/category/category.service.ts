@@ -6,6 +6,10 @@ import { CreateCategoryDto, UpdateCategoryDto } from './dto/category.dto';
 export class CategoryService {
   constructor(private readonly prismaService: PrismaService) {}
 
+  async getAll() {
+    return this.prismaService.category.findMany();
+  }
+
   async getById(id: string) {
     const category = await this.prismaService.category.findUnique({
       where: {

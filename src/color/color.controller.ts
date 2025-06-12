@@ -11,13 +11,19 @@ import {
 } from '@nestjs/common';
 import { Auth } from '../auth/decorators/auth.decorator';
 import { CreateColorDto, UpdateColorDto } from './dto/color.dto';
+import { Color } from '@/prisma/generated';
 @Controller('colors')
 export class ColorController {
   constructor(private readonly colorService: ColorService) {}
 
+  @Get()
+  async getAll(): Promise<Color[]> {
+    return this.colorService.getAll();
+  }
+
   @Auth()
   @Get(':id')
-  async getById(@Param('id') id: string) {
+  async getById(@Param('id') id: string): Promise<Color> {
     return this.colorService.getById(id);
   }
 

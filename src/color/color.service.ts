@@ -6,6 +6,10 @@ import { CreateColorDto, UpdateColorDto } from './dto/color.dto';
 export class ColorService {
   constructor(private readonly prismaService: PrismaService) {}
 
+  async getAll() {
+    return this.prismaService.color.findMany();
+  }
+
   async getById(id: string) {
     const color = await this.prismaService.color.findUnique({
       where: {
