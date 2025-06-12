@@ -6,12 +6,6 @@ import { CreateColorDto, UpdateColorDto } from './dto/color.dto';
 export class ColorService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async getByStoreId(storeId: string) {
-    return await this.prismaService.color.findMany({
-      where: { storeId: storeId },
-    });
-  }
-
   async getById(id: string) {
     const color = await this.prismaService.color.findUnique({
       where: {
@@ -32,7 +26,6 @@ export class ColorService {
         data: {
           name: dto.name,
           value: dto.value,
-          storeId: storeId,
         },
       });
     } catch (e) {

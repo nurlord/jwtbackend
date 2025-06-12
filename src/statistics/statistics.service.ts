@@ -38,15 +38,13 @@ export class StatisticsService {
     const totalRevenue = await this.calculateTotalRevenue(storeId, userId);
 
     const productsCount = await this.countProducts(storeId, userId);
-    const categoriesCount = await this.countCategories(storeId, userId);
 
     const averageRating = await this.calculateAverageRating(storeId, userId);
 
     return [
       { id: 1, name: 'Revenue', value: totalRevenue },
       { id: 2, name: 'Products', value: productsCount },
-      { id: 3, name: 'Categories', value: categoriesCount },
-      { id: 4, name: 'Average rating', value: averageRating },
+      { id: 3, name: 'Average rating', value: averageRating },
     ];
   }
 
@@ -90,13 +88,6 @@ export class StatisticsService {
           userId: userId,
         },
       },
-    });
-    return count;
-  }
-
-  private async countCategories(storeId: string, userId: string) {
-    const count = await this.prismaService.category.count({
-      where: { storeId, store: { userId: userId } },
     });
     return count;
   }

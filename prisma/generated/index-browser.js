@@ -154,7 +154,6 @@ exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  storeId: 'storeId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -164,8 +163,7 @@ exports.Prisma.ColorScalarFieldEnum = {
   name: 'name',
   value: 'value',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  storeId: 'storeId'
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ReviewScalarFieldEnum = {

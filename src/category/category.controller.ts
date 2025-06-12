@@ -15,13 +15,7 @@ import { Category } from '@/prisma/generated';
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
-  @Auth()
-  @Get('by-storeid/:storeId')
-  async getByStoreId(@Param('storeId') id: string): Promise<Category[]> {
-    return this.categoryService.getByStoreId(id);
-  }
-
-  @Get('by-id/:id')
+  @Get(':id')
   async getById(@Param('id') id: string): Promise<Category> {
     return this.categoryService.getById(id);
   }
