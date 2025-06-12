@@ -17,7 +17,7 @@ export class StoreController {
   constructor(private readonly storeService: StoreService) {}
 
   @Auth()
-  @Get('by-id/:id')
+  @Get(':id')
   async getStoreById(
     @Param('id') storeId: string,
     @CurrentUser('id') userId: string,
