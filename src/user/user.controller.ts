@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Patch } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CurrentUser } from './decorators/user.decorator';
 import { Auth } from '../auth/decorators/auth.decorator';
-import { RegisterDto } from '../auth/dto/auth.dto';
+import { RegisterDto, UpdateUserDto } from '../auth/dto/auth.dto';
 
 @Controller('users')
 export class UserController {
@@ -16,7 +16,10 @@ export class UserController {
 
   @Auth()
   @Patch('profile')
-  async updateProfile(@CurrentUser('id') id: string, @Body() dto: RegisterDto) {
+  async updateProfile(
+    @CurrentUser('id') id: string,
+    @Body() dto: UpdateUserDto,
+  ) {
     return this.userService.updateProfile(id, dto);
   }
 
