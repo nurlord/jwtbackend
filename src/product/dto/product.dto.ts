@@ -40,11 +40,6 @@ export class CreateProductDto {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  colorId: string;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  @IsString()
   categoryId: string;
 }
 

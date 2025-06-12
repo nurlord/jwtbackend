@@ -15,7 +15,6 @@ export class ProductService {
       },
       include: {
         category: true,
-        color: true,
         reviews: true,
         store: true,
       },
@@ -36,7 +35,6 @@ export class ProductService {
       },
       include: {
         category: true,
-        color: true,
         reviews: true,
         store: true,
       },
@@ -48,7 +46,6 @@ export class ProductService {
       where: { storeId: storeId },
       include: {
         category: true,
-        color: true,
         reviews: true,
         store: true,
       },
@@ -62,7 +59,6 @@ export class ProductService {
       },
       include: {
         category: true,
-        color: true,
         reviews: {
           include: {
             user: true,
@@ -84,7 +80,6 @@ export class ProductService {
       where: { categoryId: categoryId },
       include: {
         category: true,
-        color: true,
         reviews: true,
         store: true,
       },
@@ -105,7 +100,6 @@ export class ProductService {
       },
       include: {
         category: true,
-        color: true,
         reviews: true,
         store: true,
       },
@@ -130,7 +124,6 @@ export class ProductService {
       },
       include: {
         category: true,
-        color: true,
         reviews: true,
         store: true,
       },
@@ -147,12 +140,10 @@ export class ProductService {
           price: dto.price,
           storeId: storeId,
           images: dto.images,
-          colorId: dto.colorId,
           categoryId: dto.categoryId,
         },
         include: {
           category: true,
-          color: true,
           reviews: true,
           store: true,
         },
@@ -173,7 +164,6 @@ export class ProductService {
       },
       include: {
         category: true,
-        color: true,
         reviews: true,
         store: true,
       },
@@ -188,7 +178,6 @@ export class ProductService {
       },
       include: {
         category: true,
-        color: true,
         reviews: true,
         store: true,
       },

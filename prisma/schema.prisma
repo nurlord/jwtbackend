@@ -51,7 +51,6 @@ model Store {
   updatedAt  DateTime    @updatedAt() @map("updated_at")
   Review     Review[]
   orderItems OrderItem[]
-  colors     Color[]
 
   @@map("stores")
 }
@@ -71,9 +70,6 @@ model Product {
 
   category   Category? @relation(fields: [categoryId], references: [id])
   categoryId String?   @map("category_id")
-
-  color   Color?  @relation(fields: [colorId], references: [id])
-  colorId String? @map("color_id")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt() @map("updated_at")
@@ -99,20 +95,6 @@ model Category {
   updatedAt DateTime @updatedAt() @map("updated_at")
 
   @@map("categories")
-}
-
-model Color {
-  id String @id @default(cuid())
-
-  products Product[]
-  name     String
-  value    String
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt() @map("updated_at")
-  stores    Store[]
-
-  @@map("colors")
 }
 
 model Review {
