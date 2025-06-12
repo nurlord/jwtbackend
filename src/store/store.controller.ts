@@ -16,6 +16,11 @@ import { CreateStoreDto, UpdateStoreDto } from './dto/store.dto';
 export class StoreController {
   constructor(private readonly storeService: StoreService) {}
 
+  @Get()
+  async getAll() {
+    return this.storeService.getAll();
+  }
+
   @Auth()
   @Get(':id')
   async getStoreById(

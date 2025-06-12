@@ -24,7 +24,7 @@ export class CategoryService {
     return category;
   }
 
-  async create(dto: CreateCategoryDto, storeId: string) {
+  async create(dto: CreateCategoryDto) {
     try {
       return this.prismaService.category.create({
         data: {

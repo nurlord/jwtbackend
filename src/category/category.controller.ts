@@ -27,12 +27,9 @@ export class CategoryController {
   }
 
   @Auth()
-  @Post(':storeId')
-  async create(
-    @Body() dto: CreateCategoryDto,
-    @Param('storeId') storeId: string,
-  ): Promise<Category> {
-    return this.categoryService.create(dto, storeId);
+  @Post()
+  async create(@Body() dto: CreateCategoryDto): Promise<Category> {
+    return this.categoryService.create(dto);
   }
 
   @Auth()

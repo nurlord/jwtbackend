@@ -6,6 +6,9 @@ import { CreateStoreDto, UpdateStoreDto } from './dto/store.dto';
 export class StoreService {
   constructor(private readonly prismaService: PrismaService) {}
 
+  async getAll() {
+    return this.prismaService.store.findMany();
+  }
   async getStoreById(storeId: string, userId: string) {
     const store = await this.prismaService.store.findUnique({
       where: {
