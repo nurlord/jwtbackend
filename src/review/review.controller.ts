@@ -17,9 +17,9 @@ export class ReviewController {
   constructor(private readonly reviewService: ReviewService) {}
 
   @Auth()
-  @Get('by-storeId/:storeId')
-  async getByStoreId(@Param('storeId') storeId: string) {
-    return this.reviewService.getByStoreId(storeId);
+  @Get(':productId')
+  async getByProductId(@Param('productId') productId: string) {
+    return this.reviewService.getByProductId(productId);
   }
 
   @Auth()

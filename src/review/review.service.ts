@@ -6,9 +6,9 @@ import { CreateReviewDto, UpdateReviewDto } from './dto/review.dto';
 export class ReviewService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async getByStoreId(storeId: string) {
+  async getByProductId(productId: string) {
     return await this.prismaService.review.findMany({
-      where: { storeId: storeId },
+      where: { productId: productId },
       include: { user: true },
     });
   }
