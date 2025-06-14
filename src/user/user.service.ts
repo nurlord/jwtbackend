@@ -14,7 +14,11 @@ export class UserService {
       },
       include: {
         stores: true,
-        orders: true,
+        orders: {
+          include: {
+            items: true,
+          },
+        },
         reviews: true,
         favorites: {
           include: { category: true },
@@ -22,7 +26,8 @@ export class UserService {
       },
     });
 
-    return user;
+    const { password, ...res } = user || {};
+    return res;
   }
 
   async updateProfile(id: string, dto: UpdateUserDto) {

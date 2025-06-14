@@ -39,15 +39,31 @@ export class ReviewService {
     storeId: string,
   ) {
     try {
-      return this.prismaService.review.create({
-        data: {
-          text: dto.text,
-          rating: dto.rating,
-          user: { connect: { id: userId } },
-          product: { connect: { id: productId } },
-          store: { connect: { id: storeId } },
+      const hasOrdered = !!(await this.prismaService.order.findFirst({
+        where: {
+          userId: userId,
+          items: {
+            some: {
+              productId: productId,
+            },
+          },
+          status: EnumOrderStatus.PAYED,
         },
-      });
+        select: { id: true },
+      }));
+      if (!hasOrdered) {
+        return new NotFoundException('User dont have this product in orders');
+      } else {
+        return this.prismaService.review.create({
+          data: {
+            text: dto.text,
+            rating: dto.rating,
+            user: { connect: { id: userId } },
+            product: { connect: { id: productId } },
+            store: { connect: { id: storeId } },
+          },
+        });
+      }
     } catch (e) {
       throw new NotFoundException('Not valid input');
     }
