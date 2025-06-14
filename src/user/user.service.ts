@@ -16,7 +16,11 @@ export class UserService {
         stores: true,
         orders: {
           include: {
-            items: true,
+            items: {
+              include: {
+                product: true,
+              },
+            },
           },
         },
         reviews: true,
