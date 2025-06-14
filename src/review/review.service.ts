@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateReviewDto, UpdateReviewDto } from './dto/review.dto';
+import { EnumOrderStatus } from '@/prisma/generated';
 
 @Injectable()
 export class ReviewService {
@@ -38,17 +39,21 @@ export class ReviewService {
     storeId: string,
   ) {
     try {
-      const hasOrder = await this.prismaService.orderItem.findFirst({
+      const hasOrdered = !!(await this.prismaService.order.findFirst({
         where: {
-          productId: productId,
-          order: {
-            userId: userId,
+          userId: userId,
+          items: {
+            some: {
+              productId: productId,
+            },
           },
+          status: EnumOrderStatus.PAYED,
         },
-      });
-      if (!hasOrder)
+        select: { id: true },
+      }));
+      if (!hasOrdered) {
         return new NotFoundException('User dont have this product in orders');
-      else {
+      } else {
         return this.prismaService.review.create({
           data: {
             text: dto.text,
