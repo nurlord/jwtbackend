@@ -19,12 +19,17 @@ export class UserService {
             items: {
               include: {
                 product: true,
-                store: { select: { title: true } },
+                store: true,
               },
             },
           },
         },
-        reviews: true,
+        reviews: {
+          include: {
+            product: true,
+            store: true,
+          },
+        },
         favorites: {
           include: { category: true },
         },
