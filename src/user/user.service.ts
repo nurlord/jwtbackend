@@ -26,8 +26,7 @@ export class UserService {
       },
     });
 
-    const { password, ...res } = user || {};
-    return res;
+    return user;
   }
 
   async updateProfile(id: string, dto: UpdateUserDto) {
