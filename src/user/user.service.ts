@@ -19,6 +19,7 @@ export class UserService {
             items: {
               include: {
                 product: true,
+                store: { select: { title: true } },
               },
             },
           },
