@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateReviewDto, UpdateReviewDto } from './dto/review.dto';
 import { EnumOrderStatus } from '@/prisma/generated';
@@ -57,6 +61,15 @@ export class ReviewService {
       }));
       if (!hasOrdered) {
         return new NotFoundException('User dont have this product in orders');
+      }
+      const hasReview = await this.prismaService.review.findFirst({
+        where: {
+          productId: productId,
+          userId: userId,
+        },
+      });
+      if (hasReview) {
+        return new ConflictException('User have already reviewed this product');
       } else {
         return this.prismaService.review.create({
           data: {

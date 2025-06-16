@@ -151,6 +151,7 @@ exports.Prisma.ProductScalarFieldEnum = {
 
 exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
+  parentId: 'parentId',
   title: 'title',
   description: 'description',
   createdAt: 'createdAt',

@@ -26,10 +26,24 @@ export class CategoryService {
 
   async create(dto: CreateCategoryDto) {
     try {
+      if (dto.parentId) {
+        const isCategory = await this.prismaService.category.findUnique({
+          where: { id: dto.parentId },
+        });
+        if (!isCategory) throw new NotFoundException('Category not found');
+        return this.prismaService.category.create({
+          data: {
+            title: dto.title,
+            description: dto.description,
+            parentId: dto.parentId,
+          },
+        });
+      }
       return this.prismaService.category.create({
         data: {
           title: dto.title,
           description: dto.description,
+          parentId: null,
         },
       });
     } catch (e) {

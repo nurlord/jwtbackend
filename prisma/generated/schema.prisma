@@ -86,6 +86,9 @@ model Category {
   id String @id @default(cuid())
 
   products Product[]
+  parentId String?
+  parent   Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children Category[] @relation("CategoryHierarchy")
 
   title       String
   description String
