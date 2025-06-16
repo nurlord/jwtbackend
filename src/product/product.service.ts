@@ -133,6 +133,22 @@ export class ProductService {
 
   async create(dto: CreateProductDto, storeId: string) {
     try {
+      const category = await this.prismaService.category.findUnique({
+        where: { id: dto.categoryId },
+      });
+
+      const store = await this.prismaService.store.findUnique({
+        where: { id: storeId },
+      });
+
+      if (!category) {
+        throw new NotFoundException('Category does not exist');
+      }
+
+      if (!store) {
+        throw new NotFoundException('Store does not exist');
+      }
+
       return this.prismaService.product.create({
         data: {
           title: dto.title,
