@@ -12,12 +12,11 @@ export class FileService {
 
     const response: FileResponse[] = await Promise.all(
       files.map(async (file) => {
-        const originalName = `${Date.now()}-${file.originalname}`;
-        await writeFile(`${uploadedFolder}/${originalName}`, file.buffer);
+        await writeFile(`${uploadedFolder}/${file.originalname}`, file.buffer);
 
         return {
-          url: `/uploads/${folder}/${originalName}`,
-          name: originalName,
+          url: `/uploads/${folder}/${file.originalname}`,
+          name: file.originalname,
         };
       }),
     );
