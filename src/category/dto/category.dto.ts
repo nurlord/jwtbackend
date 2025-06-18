@@ -1,5 +1,5 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class CreateCategoryDto {
@@ -12,6 +12,7 @@ export class CreateCategoryDto {
   @MaxLength(500)
   description: string;
 
+  @ApiPropertyOptional()
   @IsOptional()
   @IsString()
   parentId?: string;
