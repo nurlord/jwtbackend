@@ -8,8 +8,19 @@ export class CategoryService {
 
   async getAll() {
     return this.prismaService.category.findMany({
+      where: {
+        parentId: null,
+      },
       include: {
-        children: { include: { children: { include: { children: true } } } },
+        children: {
+          include: {
+            children: {
+              include: {
+                children: true,
+              },
+            },
+          },
+        },
       },
     });
   }
