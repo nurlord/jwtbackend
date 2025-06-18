@@ -5478,7 +5478,7 @@ export namespace Prisma {
     id: string
     parentId: string | null
     title: string
-    description: string
+    description: string | null
     createdAt: Date
     updatedAt: Date
     _count: CategoryCountAggregateOutputType | null
@@ -5570,7 +5570,7 @@ export namespace Prisma {
       id: string
       parentId: string | null
       title: string
-      description: string
+      description: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["category"]>
@@ -10551,7 +10551,7 @@ export namespace Prisma {
     id?: StringFilter<"Category"> | string
     parentId?: StringNullableFilter<"Category"> | string | null
     title?: StringFilter<"Category"> | string
-    description?: StringFilter<"Category"> | string
+    description?: StringNullableFilter<"Category"> | string | null
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
     products?: ProductListRelationFilter
@@ -10564,7 +10564,7 @@ export namespace Prisma {
     id?: SortOrder
     parentId?: SortOrderInput | SortOrder
     title?: SortOrder
-    description?: SortOrder
+    description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     products?: ProductOrderByRelationAggregateInput
@@ -10580,7 +10580,7 @@ export namespace Prisma {
     NOT?: CategoryWhereInput | CategoryWhereInput[]
     parentId?: StringNullableFilter<"Category"> | string | null
     title?: StringFilter<"Category"> | string
-    description?: StringFilter<"Category"> | string
+    description?: StringNullableFilter<"Category"> | string | null
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
     products?: ProductListRelationFilter
@@ -10593,7 +10593,7 @@ export namespace Prisma {
     id?: SortOrder
     parentId?: SortOrderInput | SortOrder
     title?: SortOrder
-    description?: SortOrder
+    description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: CategoryCountOrderByAggregateInput
@@ -10608,7 +10608,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Category"> | string
     parentId?: StringNullableWithAggregatesFilter<"Category"> | string | null
     title?: StringWithAggregatesFilter<"Category"> | string
-    description?: StringWithAggregatesFilter<"Category"> | string
+    description?: StringNullableWithAggregatesFilter<"Category"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
   }
@@ -11102,7 +11102,7 @@ export namespace Prisma {
   export type CategoryCreateInput = {
     id?: string
     title: string
-    description: string
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductCreateNestedManyWithoutCategoryInput
@@ -11115,7 +11115,7 @@ export namespace Prisma {
     id?: string
     parentId?: string | null
     title: string
-    description: string
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductUncheckedCreateNestedManyWithoutCategoryInput
@@ -11126,7 +11126,7 @@ export namespace Prisma {
   export type CategoryUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUpdateManyWithoutCategoryNestedInput
@@ -11139,7 +11139,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUncheckedUpdateManyWithoutCategoryNestedInput
@@ -11151,7 +11151,7 @@ export namespace Prisma {
     id?: string
     parentId?: string | null
     title: string
-    description: string
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11159,7 +11159,7 @@ export namespace Prisma {
   export type CategoryUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11168,7 +11168,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13127,7 +13127,7 @@ export namespace Prisma {
   export type CategoryCreateWithoutStoresInput = {
     id?: string
     title: string
-    description: string
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductCreateNestedManyWithoutCategoryInput
@@ -13139,7 +13139,7 @@ export namespace Prisma {
     id?: string
     parentId?: string | null
     title: string
-    description: string
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductUncheckedCreateNestedManyWithoutCategoryInput
@@ -13283,7 +13283,7 @@ export namespace Prisma {
     id?: StringFilter<"Category"> | string
     parentId?: StringNullableFilter<"Category"> | string | null
     title?: StringFilter<"Category"> | string
-    description?: StringFilter<"Category"> | string
+    description?: StringNullableFilter<"Category"> | string | null
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
   }
@@ -13434,7 +13434,7 @@ export namespace Prisma {
   export type CategoryCreateWithoutProductsInput = {
     id?: string
     title: string
-    description: string
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     parent?: CategoryCreateNestedOneWithoutChildrenInput
@@ -13446,7 +13446,7 @@ export namespace Prisma {
     id?: string
     parentId?: string | null
     title: string
-    description: string
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     children?: CategoryUncheckedCreateNestedManyWithoutParentInput
@@ -13586,7 +13586,7 @@ export namespace Prisma {
   export type CategoryUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parent?: CategoryUpdateOneWithoutChildrenNestedInput
@@ -13598,7 +13598,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     children?: CategoryUncheckedUpdateManyWithoutParentNestedInput
@@ -13699,7 +13699,7 @@ export namespace Prisma {
   export type CategoryCreateWithoutChildrenInput = {
     id?: string
     title: string
-    description: string
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductCreateNestedManyWithoutCategoryInput
@@ -13711,7 +13711,7 @@ export namespace Prisma {
     id?: string
     parentId?: string | null
     title: string
-    description: string
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductUncheckedCreateNestedManyWithoutCategoryInput
@@ -13726,7 +13726,7 @@ export namespace Prisma {
   export type CategoryCreateWithoutParentInput = {
     id?: string
     title: string
-    description: string
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductCreateNestedManyWithoutCategoryInput
@@ -13737,7 +13737,7 @@ export namespace Prisma {
   export type CategoryUncheckedCreateWithoutParentInput = {
     id?: string
     title: string
-    description: string
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductUncheckedCreateNestedManyWithoutCategoryInput
@@ -13814,7 +13814,7 @@ export namespace Prisma {
   export type CategoryUpdateWithoutChildrenInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUpdateManyWithoutCategoryNestedInput
@@ -13826,7 +13826,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUncheckedUpdateManyWithoutCategoryNestedInput
@@ -14615,7 +14615,7 @@ export namespace Prisma {
   export type CategoryUpdateWithoutStoresInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUpdateManyWithoutCategoryNestedInput
@@ -14627,7 +14627,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUncheckedUpdateManyWithoutCategoryNestedInput
@@ -14638,7 +14638,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14805,7 +14805,7 @@ export namespace Prisma {
   export type CategoryCreateManyParentInput = {
     id?: string
     title: string
-    description: string
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -14853,7 +14853,7 @@ export namespace Prisma {
   export type CategoryUpdateWithoutParentInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUpdateManyWithoutCategoryNestedInput
@@ -14864,7 +14864,7 @@ export namespace Prisma {
   export type CategoryUncheckedUpdateWithoutParentInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUncheckedUpdateManyWithoutCategoryNestedInput
@@ -14875,7 +14875,7 @@ export namespace Prisma {
   export type CategoryUncheckedUpdateManyWithoutParentInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

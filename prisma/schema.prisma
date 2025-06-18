@@ -91,7 +91,7 @@ model Category {
   children Category[] @relation("CategoryHierarchy")
 
   title       String
-  description String
+  description String?
   stores      Store[]
 
   createdAt DateTime @default(now()) @map("created_at")
