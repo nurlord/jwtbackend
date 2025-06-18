@@ -7,7 +7,8 @@ export class CreateCategoryDto {
   @IsString()
   title: string;
 
-  @ApiProperty()
+  @ApiPropertyOptional()
+  @IsOptional()
   @IsString()
   @MaxLength(500)
   description: string;
