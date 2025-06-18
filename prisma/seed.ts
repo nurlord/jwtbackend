@@ -3,7 +3,15 @@ import { PrismaClient } from './generated';
 
 const prisma = new PrismaClient();
 
-async function insertCategory(category) {
+type CategoryInput = {
+  id: string;
+  parentId: string | null;
+  title: string;
+  description?: string | null;
+  children?: CategoryInput[];
+};
+
+async function insertCategory(category: CategoryInput) {
   await prisma.category.create({
     data: {
       id: category.id,
