@@ -3,6 +3,8 @@ import { path } from 'app-root-path';
 import { ensureDir, writeFile } from 'fs-extra';
 import { FileResponse } from './file.interface';
 
+const baseUrl = 'https://practiceapi.mooo.com';
+
 @Injectable()
 export class FileService {
   async saveFiles(files: Express.Multer.File[], folder: string = 'products') {
@@ -15,7 +17,7 @@ export class FileService {
         await writeFile(`${uploadedFolder}/${file.originalname}`, file.buffer);
 
         return {
-          url: `/uploads/${folder}/${file.originalname}`,
+          url: `${baseUrl}/uploads/${folder}/${file.originalname}`,
           name: file.originalname,
         };
       }),
