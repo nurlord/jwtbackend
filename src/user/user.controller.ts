@@ -31,4 +31,10 @@ export class UserController {
   ) {
     return this.userService.toggleFavorite(productId, userId);
   }
+
+  @Auth()
+  @Get('profile/favorites')
+  async getFavorites(@CurrentUser('id') userId: string) {
+    return this.userService.getFavorites(userId);
+  }
 }

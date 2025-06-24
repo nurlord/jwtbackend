@@ -94,4 +94,20 @@ export class UserService {
       },
     });
   }
+
+  async getFavorites(userId: string) {
+    const favorites = await this.prismaService.user.findUnique({
+      where: { id: userId },
+      select: {
+        favorites: {
+          include: {
+            category: true,
+            store: true,
+          },
+        },
+      },
+    });
+
+    return favorites?.favorites ?? [];
+  }
 }
