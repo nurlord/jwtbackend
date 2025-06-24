@@ -35,6 +35,6 @@ export class UserController {
   @Auth()
   @Get('profile/favorites')
   async getFavorites(@CurrentUser('id') userId: string) {
-    return this.userService.getFavorites(userId);
+    return await this.userService.getFavorites(userId);
   }
 }

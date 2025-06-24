@@ -8,13 +8,13 @@ export class ProductService {
 
   async getAll(searchTerm?: string, userId?: string) {
     if (searchTerm) return this.getSearchTermFilter(searchTerm);
-    let favouriteIds: string[] = [];
+    let favoriteIds: string[] = [];
     if (userId) {
       const userWithFavorites = await this.prismaService.user.findUnique({
         where: { id: userId },
         select: { favorites: { select: { id: true } } },
       });
-      favouriteIds = userWithFavorites?.favorites.map((fav) => fav.id) ?? [];
+      favoriteIds = userWithFavorites?.favorites.map((fav) => fav.id) ?? [];
     }
     const products = await this.prismaService.product.findMany({
       orderBy: { createdAt: 'desc' },
@@ -22,12 +22,20 @@ export class ProductService {
     });
     return products.map((product) => ({
       ...product,
-      isFavourite: favouriteIds.includes(product.id),
+      isFavourite: favoriteIds.includes(product.id),
     }));
   }
 
-  private async getSearchTermFilter(searchTerm: string) {
-    return this.prismaService.product.findMany({
+  private async getSearchTermFilter(searchTerm: string, userId?: string) {
+    let favoriteIds: string[] = [];
+    if (userId) {
+      const userWithFavorites = await this.prismaService.user.findUnique({
+        where: { id: userId },
+        select: { favorites: { select: { id: true } } },
+      });
+      favoriteIds = userWithFavorites?.favorites.map((fav) => fav.id) ?? [];
+    }
+    const products = await this.prismaService.product.findMany({
       where: {
         OR: [
           {
@@ -44,8 +52,11 @@ export class ProductService {
         store: true,
       },
     });
+    return products.map((product) => ({
+      ...product,
+      isFavorite: favoriteIds.includes(product.id),
+    }));
   }
-
   async getByStoreId(storeId: string) {
     return await this.prismaService.product.findMany({
       where: { storeId: storeId },
