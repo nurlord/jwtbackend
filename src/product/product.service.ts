@@ -22,7 +22,7 @@ export class ProductService {
     });
     return products.map((product) => ({
       ...product,
-      isFavourite: favoriteIds.includes(product.id),
+      isFavorite: favoriteIds.includes(product.id),
     }));
   }
 
