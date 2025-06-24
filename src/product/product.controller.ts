@@ -13,12 +13,14 @@ import { Auth } from '../auth/decorators/auth.decorator';
 import { CreateProductDto, UpdateProductDto } from './dto/product.dto';
 import { ApiQuery } from '@nestjs/swagger';
 import { CurrentUser } from '../user/decorators/user.decorator';
+import { OptionalAuth } from '../auth/decorators/optional-auth.decorator';
 
 @Controller('products')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @ApiQuery({ name: 'searchTerm', required: false, type: String })
+  @OptionalAuth()
   @Get()
   async getAll(
     @Query('searchTerm') searchTerm?: string,
@@ -33,6 +35,7 @@ export class ProductController {
     return this.productService.getByStoreId(storeId);
   }
 
+  @OptionalAuth()
   @Get('by-id/:id')
   async getById(@Param('id') id: string) {
     return this.productService.getById(id);
