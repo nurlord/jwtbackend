@@ -6,19 +6,24 @@ import { CreateProductDto, UpdateProductDto } from './dto/product.dto';
 export class ProductService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async getAll(searchTerm?: string) {
+  async getAll(searchTerm?: string, userId?: string) {
     if (searchTerm) return this.getSearchTermFilter(searchTerm);
-
-    return await this.prismaService.product.findMany({
-      orderBy: {
-        createdAt: 'desc',
-      },
-      include: {
-        category: true,
-        reviews: true,
-        store: true,
-      },
+    let favouriteIds: string[] = [];
+    if (userId) {
+      const userWithFavorites = await this.prismaService.user.findUnique({
+        where: { id: userId },
+        select: { favorites: { select: { id: true } } },
+      });
+      favouriteIds = userWithFavorites?.favorites.map((fav) => fav.id) ?? [];
+    }
+    const products = await this.prismaService.product.findMany({
+      orderBy: { createdAt: 'desc' },
+      include: { category: true, reviews: true, store: true },
     });
+    return products.map((product) => ({
+      ...product,
+      isFavourite: favouriteIds.includes(product.id),
+    }));
   }
 
   private async getSearchTermFilter(searchTerm: string) {

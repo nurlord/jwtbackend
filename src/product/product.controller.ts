@@ -12,6 +12,7 @@ import { ProductService } from './product.service';
 import { Auth } from '../auth/decorators/auth.decorator';
 import { CreateProductDto, UpdateProductDto } from './dto/product.dto';
 import { ApiQuery } from '@nestjs/swagger';
+import { CurrentUser } from '../user/decorators/user.decorator';
 
 @Controller('products')
 export class ProductController {
@@ -19,8 +20,11 @@ export class ProductController {
 
   @ApiQuery({ name: 'searchTerm', required: false, type: String })
   @Get()
-  async getAll(@Query('searchTerm') searchTerm?: string) {
-    return this.productService.getAll(searchTerm);
+  async getAll(
+    @Query('searchTerm') searchTerm?: string,
+    @CurrentUser('id') userId?: string
+  ) {
+    return this.productService.getAll(searchTerm, userId);
   }
 
   @Auth()
