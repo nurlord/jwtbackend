@@ -7,7 +7,7 @@ export class ProductService {
   constructor(private readonly prismaService: PrismaService) {}
 
   async getAll(searchTerm?: string, userId?: string) {
-    if (searchTerm) return this.getSearchTermFilter(searchTerm);
+    if (searchTerm) return this.getSearchTermFilter(searchTerm, userId);
     let favoriteIds: string[] = [];
     if (userId) {
       const userWithFavorites = await this.prismaService.user.findUnique({
