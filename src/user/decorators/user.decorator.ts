@@ -14,9 +14,10 @@ export const CurrentUser = createParamDecorator(
     const request = ctx.switchToHttp().getRequest<Request>();
 
     const user = request.user as User | undefined;
-    if (!user) {
-      throw new UnauthorizedException('Not authorized');
-    }
+    // if (!user) {
+    //   throw new UnauthorizedException('Not authorized');
+    // }
+    if (!user) return null;
 
     return data ? user[data] : user;
   },
